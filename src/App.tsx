@@ -1,9 +1,9 @@
-import React from 'react';
+import GoodThingContainer from './components/GoodThingContainer';
 
 function App() {
   return (
-    <div className="App">
-      <p>Hello, React DeepL-API</p>
+    <div className="flex justify-center items-center flex-col w-screen min-h-screen bg-gray-200">
+      <GoodThingContainer />
     </div>
   );
 }
