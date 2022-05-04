@@ -1,7 +1,7 @@
 import appConfig from '../config';
 
 type DeeplResponse = {
-  translatedText: string | undefined;
+  deeplText: string | undefined;
   status: number;
   errMsg?: string;
 };
@@ -23,20 +23,20 @@ const execTranslate = async (sourceText: string): Promise<DeeplResponse> => {
     if (text) {
       // Normal
       return {
-        translatedText: text,
+        deeplText: text,
         status: res.status,
       };
     }
     // Error
     return {
-      translatedText: undefined,
+      deeplText: undefined,
       status: res.status,
       errMsg: 'Translated but NO text',
     };
   }
   // Error
   return {
-    translatedText: undefined,
+    deeplText: undefined,
     status: res.status,
     errMsg: 'Server error on DeepL',
   };
