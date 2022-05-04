@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  color: #202020;
+  font-family: Avenir-Roman, 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'BIZ UDPGothic', Meiryo, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+}
+
+del {
+  background-color: #ffd7d5;
+  white-space: pre-wrap;
+}
+
+ins {
+  background-color: #ccffe8;
+  white-space: pre-wrap;
+}

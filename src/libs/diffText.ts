@@ -1,15 +1,17 @@
 import diff from 'simple-text-diff';
+import { DiffText } from '../contexts/GoodThingContext';
 
-type DiffText = {
-  textByMyself: string;
-  textByDeepL: string;
-};
+// export type DiffText = {
+//   diffEnteredText: string;
+//   diffDeepLText: string;
+// };
 
 const diffText = (enteredText: string, translatedText: string): DiffText => {
   const diffResult = diff.diffPatch(enteredText, translatedText);
+  // const diffResult = diff.diffPatchBySeparator(enteredText, translatedText, '.');
   return {
-    textByMyself: diffResult.before.replace(/\n/g, '<br>'),
-    textByDeepL: diffResult.after.replace(/\n/g, '<br>'),
+    diffEnteredText: diffResult.before.replace(/\n/g, '<br>'),
+    diffDeepLText: diffResult.after.replace(/\n/g, '<br>'),
   };
 };
 

@@ -31,7 +31,7 @@ const TextArea: FC<TextAreaProps> = ({ name }) => {
 
   return (
     <div>
-      <div className="text-gray-500 text-sm">
+      <div className="text-gray-400 text-sm">
         {name === 'Source' ? <label htmlFor={name}>{name}</label> : <label htmlFor="Target">{name}</label>}
       </div>
       <textarea
