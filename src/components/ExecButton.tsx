@@ -20,10 +20,9 @@ const ExecButton: FC<ButtonProps> = ({ name }) => {
     try {
       const { deeplText, status, errMsg } = await execTranslate(sourceText);
       if (deeplText) {
-        setDiffTexts(diffText(targetText, deeplText));
-      } else {
-        console.log(`DeepL failed: ${errMsg} / Status code: ${status}`);
+        return deeplText;
       }
+      console.log(`DeepL failed: ${errMsg} / Status code: ${status}`);
     } catch (fetchErr) {
       console.log(`Fetch failed: ${fetchErr}`);
     }
@@ -37,7 +36,9 @@ const ExecButton: FC<ButtonProps> = ({ name }) => {
         size="small"
         style={{ textTransform: 'none' }}
         onClick={() => {
-          execDeepL();
+          execDeepL().then((res) => {
+            if (res) setDiffTexts(diffText(targetText, res));
+          });
         }}
       >
         {name}
