@@ -12,6 +12,7 @@ type AppConfig = {
     deeplAuthKey: string;
     deeplSourceLang: string;
     deeplTargetLang: string;
+    textAreaMaxHeight: number;
   };
 };
 
@@ -21,6 +22,7 @@ const appConfig: AppConfig = {
     deeplAuthKey: convertString(process.env.REACT_APP_DEEPL_AUTH_KEY),
     deeplSourceLang: convertString(process.env.REACT_APP_DEEPL_SOURCE_LANG),
     deeplTargetLang: convertString(process.env.REACT_APP_DEEPL_TARGET_LANG),
+    textAreaMaxHeight: Number(convertString(process.env.REACT_APP_TEXTAREA_MAXHEIGHT)),
   },
 };
 
