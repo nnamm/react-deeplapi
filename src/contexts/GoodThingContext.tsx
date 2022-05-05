@@ -1,4 +1,4 @@
-import { FC, useState, createContext, ReactNode } from 'react';
+import { createContext, FC, ReactNode, useState } from 'react';
 
 export type DiffText = {
   diffEnteredText: string;
