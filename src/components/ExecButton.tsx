@@ -18,10 +18,10 @@ const ExecButton: FC<ButtonProps> = ({ name }) => {
       if (deeplText) {
         setDiffTexts(diffText(targetText, deeplText));
       } else {
-        console.log(`DeepL faild: ${errMsg} / Status code: ${status}`);
+        console.log(`DeepL failed: ${errMsg} / Status code: ${status}`);
       }
     } catch (fetchErr) {
-      console.log(`Fetch faild: ${fetchErr}`);
+      console.log(`Fetch failed: ${fetchErr}`);
     }
   };
 
