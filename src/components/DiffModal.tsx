@@ -3,10 +3,13 @@ import { GoodThingContext } from '../contexts/GoodThingContext';
 import Button from '@mui/material/Button';
 import parser from 'html-react-parser';
 
+// Component
 const DiffModal = () => {
+  // Hooks
   const { diffTexts, setDiffTexts } = useContext(GoodThingContext);
   const [show, setShow] = useState(true);
 
+  // Functions
   const closeModal = () => {
     setShow(false);
     setDiffTexts({

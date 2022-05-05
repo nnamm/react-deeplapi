@@ -5,13 +5,17 @@ import Button from '@mui/material/Button';
 import execTranslate from '../libs/deepl';
 import diffText from '../libs/diffText';
 
+// Definitions
 type ButtonProps = {
   name: string;
 };
 
+// Component
 const ExecButton: FC<ButtonProps> = ({ name }) => {
+  // Hooks
   const { sourceText, targetText, diffTexts, setDiffTexts } = useContext(GoodThingContext);
 
+  // Functions
   const execDeepL = async () => {
     try {
       const { deeplText, status, errMsg } = await execTranslate(sourceText);

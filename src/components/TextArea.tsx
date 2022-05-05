@@ -1,25 +1,27 @@
 import React, { FC, useContext, useState } from 'react';
 import { GoodThingContext } from '../contexts/GoodThingContext';
 
-const INITROW = 1;
-
+// Definitions
 type TextAreaProps = {
   name: string;
 };
+const INITROW = 1;
 
-const getRowCount = (text: string): number => {
-  const matchArray: RegExpMatchArray | null = text.match(/\n/g);
-  if (matchArray) {
-    const lineBreaks = matchArray.length + INITROW;
-    return lineBreaks < 10 ? lineBreaks : 10;
-  }
-  return INITROW;
-};
-
+// Component
 const TextArea: FC<TextAreaProps> = ({ name }) => {
+  // Hooks
   const [rowCount, setRowCount] = useState(INITROW);
   const { sourceText, targetText, setSourceText, setTargetText } = useContext(GoodThingContext);
 
+  // Functions
+  const getRowCount = (text: string): number => {
+    const matchArray: RegExpMatchArray | null = text.match(/\n/g);
+    if (matchArray) {
+      const lineBreaks = matchArray.length + INITROW;
+      return lineBreaks < 10 ? lineBreaks : 10;
+    }
+    return INITROW;
+  };
   const sourceHandlerChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setRowCount(getRowCount(e.target.value));
     setSourceText(e.target.value);

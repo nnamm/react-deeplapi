@@ -2,6 +2,7 @@ import GoodThingProvider from '../contexts/GoodThingContext';
 import TextArea from './TextArea';
 import ExecButton from './ExecButton';
 
+// Component
 const GoodThingContainer = () => {
   return (
     <div className="w-1/2">
