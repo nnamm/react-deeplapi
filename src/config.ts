@@ -3,8 +3,7 @@ const convertString = (raw: string | undefined): string => {
     console.log('env value not found');
     return 'NULL';
   }
-  const parsed = String(raw);
-  return parsed;
+  return String(raw);
 };
 
 type AppConfig = {
