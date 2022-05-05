@@ -3,8 +3,7 @@ const convertString = (raw: string | undefined): string => {
     console.log('env value not found');
     return 'NULL';
   }
-  const parsed = String(raw);
-  return parsed;
+  return String(raw);
 };
 
 type AppConfig = {
@@ -13,6 +12,7 @@ type AppConfig = {
     deeplAuthKey: string;
     deeplSourceLang: string;
     deeplTargetLang: string;
+    textAreaMaxHeight: number;
   };
 };
 
@@ -22,6 +22,7 @@ const appConfig: AppConfig = {
     deeplAuthKey: convertString(process.env.REACT_APP_DEEPL_AUTH_KEY),
     deeplSourceLang: convertString(process.env.REACT_APP_DEEPL_SOURCE_LANG),
     deeplTargetLang: convertString(process.env.REACT_APP_DEEPL_TARGET_LANG),
+    textAreaMaxHeight: Number(convertString(process.env.REACT_APP_TEXTAREA_MAXHEIGHT)),
   },
 };
 

@@ -5,7 +5,7 @@ import parser from 'html-react-parser';
 
 const DiffModal = () => {
   const { diffTexts, setDiffTexts } = useContext(GoodThingContext);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState<boolean>(true);
 
   const closeModal = () => {
     setShow(false);
