@@ -16,14 +16,14 @@ const GoodThingContainer = () => {
     <div className="w-1/2">
       <GoodThingProvider>
         <TextArea name="Source" />
-        <div className="flex flex-row items-start mt-1">
-          <IconButton size="small" onClick={() => targetHandlerShow()}>
+        <div className="flex flex-row items-start mt-0.5">
+          <IconButton aria-label="Open target textarea" onClick={() => targetHandlerShow()}>
             <ArrowRightOutlinedIcon />
           </IconButton>
           {targetShow && (
-            <div className="flex flex-col w-full ml-2">
+            <div className="flex flex-col w-full mt-0.5 ml-0.5">
               <TextArea name="Target" />
-              <ExecButton name="DeepL" />
+              <ExecButton />
             </div>
           )}
         </div>

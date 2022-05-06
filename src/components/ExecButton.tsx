@@ -1,18 +1,17 @@
-import { FC, useContext } from 'react';
+import { useContext, useState } from 'react';
 import { GoodThingContext } from '../contexts/GoodThingContext';
 import DiffModal from './DiffModal';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import execTranslate from '../libs/deepl';
 import diffText from '../libs/diffText';
 
-type ButtonProps = {
-  name: string;
-};
-
-const ExecButton: FC<ButtonProps> = ({ name }) => {
+const ExecButton = () => {
   const { sourceText, targetText, diffTexts, setDiffTexts } = useContext(GoodThingContext);
+  const [translating, setTranslating] = useState<boolean>(false);
 
   const execDeepL = async () => {
+    setTranslating(true);
     try {
       const { deeplText, status, errMsg } = await execTranslate(sourceText);
       if (deeplText) {
@@ -26,19 +25,20 @@ const ExecButton: FC<ButtonProps> = ({ name }) => {
 
   return (
     <div>
-      <Button
-        className="focus:outline-none"
-        disabled={sourceText === '' || targetText === ''}
-        size="small"
-        style={{ textTransform: 'none' }}
+      <IconButton
+        aria-label="Check target text"
+        disabled={sourceText === '' || targetText === '' || translating}
+        sx={{ marginLeft: '.25rem' }}
         onClick={() => {
           execDeepL().then((res) => {
+            setTranslating(false);
             if (res) setDiffTexts(diffText(targetText, res));
           });
         }}
       >
-        {name}
-      </Button>
+        <SpellcheckIcon sx={{ fontSize: '1.1rem' }} />
+      </IconButton>
+
       {diffTexts.diffDeepLText && <DiffModal />}
     </div>
   );

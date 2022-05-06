@@ -6,8 +6,6 @@ type TextAreaProps = {
   name: string;
 };
 
-// const MAXHEIGHT = 248; // line-height 24 px * 10 lines + padding-top & bottom 8px
-
 const useAutoHeightTextarea = (value: string | undefined): React.RefObject<HTMLTextAreaElement> => {
   const ref = useRef<HTMLTextAreaElement>(null);
 
@@ -41,21 +39,17 @@ const TextArea: FC<TextAreaProps> = ({ name }) => {
 
   return (
     <div>
-      {/*<div className="text-gray-400 text-sm">*/}
-      {/*  {name === 'Source' ? <label htmlFor={name}>{name}</label> : <label htmlFor="Target">{name}</label>}*/}
-      {/*</div>*/}
       <textarea
+        className="w-full px-2 py-1 leading-6 border-solid rounded-lg bg-gray-100 focus:outline-none focus:bg-white"
+        style={{ border: 'solid 1px #ddd', resize: 'none' }}
         aria-label="Textarea to write about what was good."
         id={name}
         name={name}
-        // rows={rowCount}
-        rows={1}
-        value={name === 'Source' ? sourceText : targetText}
         placeholder={name}
+        rows={1}
         onChange={name === 'Source' ? (e) => sourceHandlerChange(e) : (e) => targetHandlerChange(e)}
-        className="w-full px-2 py-1 leading-6 border-solid rounded-lg bg-gray-100 focus:outline-none focus:bg-white"
-        style={{ border: 'solid 1px #ddd', resize: 'none' }}
         ref={name === 'Source' ? sourceTextareaRef : targetTextareaRef}
+        value={name === 'Source' ? sourceText : targetText}
       />
     </div>
   );
