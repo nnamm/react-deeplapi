@@ -6,10 +6,12 @@ import parser from 'html-react-parser';
 
 const DiffModal = () => {
   const { diffTexts, setDiffTexts } = useContext(GoodThingContext);
-  const [show, setShow] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState<boolean>(true);
 
   const closeModal = () => {
-    setShow(false);
+    // Close modal
+    setShowModal(false);
+    // Cleanup
     setDiffTexts({
       diffEnteredText: '',
       diffDeepLText: '',
@@ -18,7 +20,7 @@ const DiffModal = () => {
 
   return (
     <div>
-      {show && (
+      {showModal && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div className="z-10 w-4/5 px-6 pt-8 pb-4 bg-gray-100 rounded-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex flex-row text-gray-800 leading-6">
@@ -32,7 +34,7 @@ const DiffModal = () => {
               </div>
             </div>
             <div className="flex justify-center items-center mt-8">
-              <IconButton size="small" onClick={() => closeModal()}>
+              <IconButton aria-label="Close" size="small" onClick={() => closeModal()}>
                 <HighlightOffOutlinedIcon />
               </IconButton>
             </div>
