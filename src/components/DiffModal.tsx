@@ -1,28 +1,25 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { GoodThingContext } from '../contexts/GoodThingContext';
+import FadeInOutBox from './FadeInOutBox';
 import IconButton from '@mui/material/IconButton';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import parser from 'html-react-parser';
 
 const DiffModal = () => {
-  const { diffTexts, setDiffTexts } = useContext(GoodThingContext);
-  const [showModal, setShowModal] = useState<boolean>(true);
+  const { diffTexts, showModal, setShowModal } = useContext(GoodThingContext);
 
   const closeModal = () => {
-    // Close modal
     setShowModal(false);
-    // Cleanup
-    setDiffTexts({
-      diffEnteredText: '',
-      diffDeepLText: '',
-    });
   };
 
   return (
     <div>
-      {showModal && (
+      <FadeInOutBox display={showModal}>
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <div className="z-10 w-4/5 px-6 pt-8 pb-4 bg-gray-100 rounded-2xl" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="z-10 w-4/5 px-6 pt-8 pb-4 bg-gray-100 rounded-2xl -translate-y-40 animate-show-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex flex-row text-gray-800 leading-6">
               <div className="w-1/2 px-2">
                 <p className="text-sm font-medium">Entered text</p>
@@ -40,7 +37,8 @@ const DiffModal = () => {
             </div>
           </div>
         </div>
-      )}
+      </FadeInOutBox>
+      {/*)}*/}
     </div>
   );
 };

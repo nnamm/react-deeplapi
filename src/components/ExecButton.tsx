@@ -7,18 +7,27 @@ import execTranslate from '../libs/deepl';
 import diffText from '../libs/diffText';
 
 const ExecButton = () => {
-  const { sourceText, targetText, diffTexts, setDiffTexts } = useContext(GoodThingContext);
+  const { sourceText, targetText, setDiffTexts, setShowModal } = useContext(GoodThingContext);
   const [translating, setTranslating] = useState<boolean>(false);
 
   const execDeepL = async () => {
+    // disable icon button
     setTranslating(true);
+    // cleanup diff data
+    setDiffTexts({
+      diffEnteredText: '',
+      diffDeepLText: '',
+    });
+
+    // Translate
     try {
       const { deeplText, status, errMsg } = await execTranslate(sourceText);
-      if (deeplText) {
-        return deeplText;
-      }
+      // Normal
+      if (deeplText) return deeplText;
+      // Error
       console.log(`DeepL failed: ${errMsg} / Status code: ${status}`);
     } catch (fetchErr) {
+      // Error
       console.log(`Fetch failed: ${fetchErr}`);
     }
   };
@@ -32,14 +41,18 @@ const ExecButton = () => {
         onClick={() => {
           execDeepL().then((res) => {
             setTranslating(false);
-            if (res) setDiffTexts(diffText(targetText, res));
+            if (res) {
+              // Create compared text data (html format)
+              setDiffTexts(diffText(targetText, res));
+              // Display them on modal screen
+              setShowModal(true);
+            }
           });
         }}
       >
         <SpellcheckIcon sx={{ fontSize: '1.1rem' }} />
       </IconButton>
-
-      {diffTexts.diffDeepLText && <DiffModal />}
+      <DiffModal />
     </div>
   );
 };

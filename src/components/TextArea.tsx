@@ -6,6 +6,7 @@ type TextAreaProps = {
   name: string;
 };
 
+// Ref: https://blog.gaji.jp/2021/05/20/7340/
 const useAutoHeightTextarea = (value: string | undefined): React.RefObject<HTMLTextAreaElement> => {
   const ref = useRef<HTMLTextAreaElement>(null);
 
